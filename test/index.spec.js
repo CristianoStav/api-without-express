@@ -53,4 +53,15 @@ describe('Test routes', () => {
                 });
         });
     });
+
+    describe('Test Invalid Route/Method', () => {
+        it('return message: Invalid URL/METHOD.', (done) => {
+            const response = { message: 'Invalid URL/METHOD.' };
+            chai.request(server).get('/route')
+                .end((err, res) => {
+                    chai.expect(res.statusCode).to.be.equal(404);
+                    chai.expect(res.body).to.be.eql(response);
+                });
+        });
+    });
 });
